@@ -1,9 +1,10 @@
-#  syntax = docker/dockerfile:1.2
+#  syntax docker/dockerfile:1.2
 
 FROM richarvey/nginx-php-fpm:2.1.2
 
-RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
 COPY . .
+
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
 
 # Image config
 ENV SKIP_COMPOSER 1
